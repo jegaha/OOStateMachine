@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Arduino.h>
 #include "State.h"
 #include "Transition.h"
 
