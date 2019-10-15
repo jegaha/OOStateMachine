@@ -18,26 +18,39 @@ class OOStateMachine
 
     void run()
     {
+      int triggerThrownByOnRun = 0;
+      bool triggerHasAccomplishedTransition = false;
+
       if (!initialized)
       {
         initialized = true;
         enterState(currentState);
       }
 
-      currentState->onRun();
-      this->handleLambdas();
+      triggerThrownByOnRun = currentState->onRun();
+
+      if (triggerThrownByOnRun)
+      {
+        triggerHasAccomplishedTransition = this->trigger(triggerThrownByOnRun);
+      }
+
+      if (!triggerHasAccomplishedTransition)
+      {
+        this->handleLambdas();
+      }
     }
 
-    void trigger(int trigger)
+    bool trigger(int trigger)
     {
       for(int i=0; i<numOfTransitions; i++)
       {
         if (this->isMatchingTransition(transitions[i], trigger))
         {
           this->transit(transitions[i]);
-          break;
+          return true;
         }
       }
+      return false;
     }
 
   protected:

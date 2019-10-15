@@ -1,10 +1,13 @@
 #pragma once
 
+#include "State.h"
+
 class Transition
 {
   public:
 
    static const int TRIGGER_LAMBDA = 0;
+   static const int TRIGGER_NO_TRIGGER = 0;
 
     Transition(State *fromState, State *toState, int trigger, long lambdaTimeout = 0)
     : fromState(fromState)

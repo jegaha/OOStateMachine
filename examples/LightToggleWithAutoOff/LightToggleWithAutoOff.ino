@@ -42,7 +42,7 @@ class MyLoggingState : public State
 
     MyLoggingState(String name) : name(name) {}
     void onEnter() { Serial.println("-------------------------------"); Serial.println(name + "->onEnter"); }
-    void onRun() { Serial.println(name + "->onRun"); }
+    int onRun() { Serial.println(name + "->onRun"); }
     void onExit() { Serial.println(name + "->onExit"); }
 
     String name;
