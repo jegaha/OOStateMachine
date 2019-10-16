@@ -53,6 +53,11 @@ class OOStateMachine
       return false;
     }
 
+    State* getCurrentState()
+    {
+        return this->currentState;
+    }
+
   protected:
 
     void enterState(State *state)
